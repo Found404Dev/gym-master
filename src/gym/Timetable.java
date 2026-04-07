@@ -5,6 +5,7 @@ import java.util.*;
 public class Timetable {
 
     private final Map<DayOfWeek, TreeMap<TimeOfDay, List<TrainingSession>>> timetable = new HashMap<>();
+
     public void addNewTrainingSession(TrainingSession session) {
         DayOfWeek day = session.getDayOfWeek();
         TimeOfDay time = session.getTimeOfDay();
@@ -14,6 +15,7 @@ public class Timetable {
         List<TrainingSession> sessionsAtTime = dayMap.computeIfAbsent(time, k -> new ArrayList<>());
         sessionsAtTime.add(session);
     }
+
     public List<TrainingSession> getTrainingSessionsForDay(DayOfWeek dayOfWeek) {
         TreeMap<TimeOfDay, List<TrainingSession>> dayMap = timetable.get(dayOfWeek);
         if (dayMap == null) {
@@ -25,6 +27,7 @@ public class Timetable {
         }
         return result;
     }
+
     public List<TrainingSession> getTrainingSessionsForDayAndTime(DayOfWeek dayOfWeek, TimeOfDay timeOfDay) {
         TreeMap<TimeOfDay, List<TrainingSession>> dayMap = timetable.get(dayOfWeek);
         if (dayMap == null) {
